@@ -1,650 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Study Planner — Smart Dashboard for Students</title>
-  <meta name="description" content="AI-powered study planner dashboard to organize subjects, track progress, manage tasks, and optimize your study schedule intelligently." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-layout">
-    <!-- ===== SIDEBAR ===== -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand">
-        <div class="brand-icon">
-          <span class="material-icons-round">auto_awesome</span>
-        </div>
-        <div class="brand-text">
-          <span class="brand-name">AI STUDY</span>
-          <span class="brand-sub">PLANNER</span>
-        </div>
-      </div>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">✨</div>
+                <div class="logo-text">
+                    <h2>StudyPlanner</h2>
+                    <span>AI Learning Assistant</span>
+                </div>
+                <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Dashboard</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Subjects</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item active">
+                        <span class="nav-icon">🤖</span>
+                        <span>AI Planner</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item">
+                        <span class="nav-icon">📅</span>
+                        <span>Calendar</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item">
+                        <span class="nav-icon">📈</span>
+                        <span>Progress</span>
+                    </a></li>
+                </ul>
+            </nav>
+        </aside>
 
-      <nav class="sidebar-nav">
-        <ul>
-          <li>
-            <a href="#" class="nav-link active" data-page="dashboard" id="nav-dashboard">
-              <span class="material-icons-round">dashboard</span>
-              <span class="nav-label">Dashboard</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link" data-page="subjects" id="nav-subjects">
-              <span class="material-icons-round">menu_book</span>
-              <span class="nav-label">My Subjects</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link" data-page="planner" id="nav-planner">
-              <span class="material-icons-round">event_note</span>
-              <span class="nav-label">Study Planner</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link" data-page="calendar" id="nav-calendar">
-              <span class="material-icons-round">calendar_month</span>
-              <span class="nav-label">Calendar</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link" data-page="smartlearning" id="nav-smartlearning">
-              <span class="material-icons-round">psychology</span>
-              <span class="nav-label">Smart Learning</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link" data-page="quizzes" id="nav-quizzes">
-              <span class="material-icons-round">quiz</span>
-              <span class="nav-label">Quizzes</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link" data-page="progress" id="nav-progress">
-              <span class="material-icons-round">trending_up</span>
-              <span class="nav-label">Progress</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link" data-page="goals" id="nav-goals">
-              <span class="material-icons-round">flag</span>
-              <span class="nav-label">Goals</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link" data-page="assistant" id="nav-assistant">
-              <span class="material-icons-round">smart_toy</span>
-              <span class="nav-label">AI Assistant</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+                    <div>
+                        <h1>AI Study Planner</h1>
+                        <p>Generate a personalized study plan powered by AI.</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn" aria-label="Notifications">
+                        <span class="icon">🔔</span>
+                        <span class="notification-badge"></span>
+                    </button>
+                    <div class="profile-avatar">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="Profile Avatar">
+                    </div>
+                </div>
+            </header>
 
-      <div class="sidebar-footer">
-        <a href="#" class="nav-link" data-page="settings" id="nav-settings">
-          <span class="material-icons-round">settings</span>
-          <span class="nav-label">Settings</span>
-        </a>
-      </div>
-    </aside>
+            <div class="dashboard-scroll">
+                <!-- Summary Cards -->
+                <section class="summary-cards">
+                    <div class="card summary-card">
+                        <div class="card-icon">⏱️</div>
+                        <div class="card-content">
+                            <h3>Study Hours</h3>
+                            <div class="value" id="stat-hours">24 hrs</div>
+                            <p>This week</p>
+                        </div>
+                    </div>
+                    <div class="card summary-card">
+                        <div class="card-icon">📚</div>
+                        <div class="card-content">
+                            <h3>Subjects</h3>
+                            <div class="value" id="stat-subjects">6</div>
+                            <p>Active subjects</p>
+                        </div>
+                    </div>
+                    <div class="card summary-card">
+                        <div class="card-icon">⚠️</div>
+                        <div class="card-content">
+                            <h3>Priority Subjects</h3>
+                            <div class="value" id="stat-priority">3</div>
+                            <p>Need attention</p>
+                        </div>
+                    </div>
+                    <div class="card summary-card">
+                        <div class="card-icon">📈</div>
+                        <div class="card-content">
+                            <h3>Plan Progress</h3>
+                            <div class="value" id="stat-progress">68%</div>
+                            <p>This week's progress</p>
+                        </div>
+                    </div>
+                </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
-    <div class="main-wrapper">
-      <!-- TOP HEADER -->
-      <header class="top-header" id="topHeader">
-        <button class="sidebar-toggle" id="sidebarToggle">
-          <span class="material-icons-round">menu</span>
-        </button>
-        <div class="header-search">
-          <span class="material-icons-round search-icon">search</span>
-          <input type="text" id="globalSearch" placeholder="Search subjects, lessons, tasks..." />
-        </div>
-        <div class="header-actions">
-          <button class="icon-btn notif-btn" id="notifBtn">
-            <span class="material-icons-round">notifications_none</span>
-            <span class="notif-badge" id="notifBadge">3</span>
-          </button>
-          <div class="profile-section" id="profileSection">
-            <div class="profile-avatar" id="profileAvatar">VS</div>
-            <div class="profile-info">
-              <span class="profile-name" id="profileName">Vishv Shah</span>
-              <span class="profile-badge">STUDENT</span>
-            </div>
-            <span class="material-icons-round profile-chevron">expand_more</span>
-          </div>
-        </div>
-      </header>
+                <div class="two-column-layout">
+                    <!-- Left Column -->
+                    <div class="column-left">
+                        <!-- AI Generator Form -->
+                        <section class="card generator-section">
+                            <div class="section-header">
+                                <h2>✨ AI Timetable Generator</h2>
+                                <p>Generate a personalized study timetable based on your subjects, exam dates, available study hours and learning priorities.</p>
+                            </div>
+                            
+                            <form id="ai-generator-form" class="generator-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="study-hours">Daily Study Hours</label>
+                                        <input type="number" id="study-hours" min="1" max="16" value="4" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="session-duration">Session Duration</label>
+                                        <select id="session-duration">
+                                            <option value="25">25 minutes</option>
+                                            <option value="45">45 minutes</option>
+                                            <option value="60" selected>60 minutes</option>
+                                            <option value="90">90 minutes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="start-time">Study Start Time</label>
+                                        <input type="time" id="start-time" value="18:00" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="end-time">Study End Time</label>
+                                        <input type="time" id="end-time" value="22:00" required>
+                                    </div>
+                                </div>
 
-      <!-- ===== PAGE: DASHBOARD ===== -->
-      <main class="page-content" id="page-dashboard">
-        <!-- Welcome Card -->
-        <section class="welcome-card" id="welcomeCard">
-          <div class="welcome-content">
-            <h1 id="welcomeGreeting">Good morning, Vishv 👋</h1>
-            <p class="welcome-sub">Let's make today's study session productive.</p>
-            <button class="btn btn-primary btn-glow" id="reoptimizeBtn">
-              <span class="material-icons-round">auto_fix_high</span>
-              Re-optimize AI Schedule
-            </button>
-          </div>
-          <div class="welcome-illustration">
-            <div class="floating-shapes">
-              <div class="shape shape-1"></div>
-              <div class="shape shape-2"></div>
-              <div class="shape shape-3"></div>
-            </div>
-            <span class="material-icons-round welcome-icon">school</span>
-          </div>
-        </section>
+                                <div class="form-group full-width">
+                                    <label>Study Days</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-label"><input type="checkbox" name="days" value="Monday" checked> Mon</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="days" value="Tuesday" checked> Tue</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="days" value="Wednesday" checked> Wed</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="days" value="Thursday" checked> Thu</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="days" value="Friday" checked> Fri</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="days" value="Saturday"> Sat</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="days" value="Sunday"> Sun</label>
+                                    </div>
+                                </div>
 
-        <!-- Statistics Cards -->
-        <section class="stats-grid" id="statsGrid">
-          <div class="stat-card" id="statStudyHours">
-            <div class="stat-icon-wrap blue">
-              <span class="material-icons-round">schedule</span>
-            </div>
-            <div class="stat-info">
-              <span class="stat-value" id="statStudyVal">3.5h</span>
-              <span class="stat-label">Study Hours</span>
-              <span class="stat-sub">Target: 4.0h daily</span>
-            </div>
-            <div class="stat-progress-ring blue" id="studyHoursRing">
-              <svg viewBox="0 0 36 36">
-                <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                <path class="ring-fill" stroke-dasharray="87.5, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-              </svg>
-            </div>
-          </div>
+                                <div class="form-group full-width">
+                                    <label for="study-preference">Study Preference</label>
+                                    <select id="study-preference">
+                                        <option value="balanced">Balanced</option>
+                                        <option value="exam-focused">Exam Focused</option>
+                                        <option value="weak-subject">Weak Subject Focus</option>
+                                        <option value="revision">Revision Focus</option>
+                                    </select>
+                                </div>
 
-          <div class="stat-card" id="statCompleted">
-            <div class="stat-icon-wrap green">
-              <span class="material-icons-round">task_alt</span>
-            </div>
-            <div class="stat-info">
-              <span class="stat-value" id="statCompletedVal">6</span>
-              <span class="stat-label">Completed</span>
-              <span class="stat-sub">Tasks completed today</span>
-            </div>
-            <div class="stat-trend up">
-              <span class="material-icons-round">trending_up</span>
-              +2
-            </div>
-          </div>
+                                <button type="submit" class="btn btn-primary btn-large btn-full">
+                                    ✨ Generate AI Timetable
+                                </button>
+                            </form>
+                        </section>
 
-          <div class="stat-card" id="statOverall">
-            <div class="stat-icon-wrap purple">
-              <span class="material-icons-round">pie_chart</span>
-            </div>
-            <div class="stat-info">
-              <span class="stat-value" id="statOverallVal">67%</span>
-              <span class="stat-label">Overall Progress</span>
-              <span class="stat-sub">Across all subjects</span>
-            </div>
-            <div class="stat-progress-ring purple" id="overallRing">
-              <svg viewBox="0 0 36 36">
-                <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                <path class="ring-fill" stroke-dasharray="67, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-              </svg>
-            </div>
-          </div>
+                        <!-- Generated Timetable Section -->
+                        <section class="card timetable-section" id="timetable-container" style="display: none;">
+                            <div class="section-header flex-between">
+                                <h2>Your AI-Generated Study Plan</h2>
+                                <div class="button-group">
+                                    <button class="btn btn-outline active">Today</button>
+                                    <button class="btn btn-outline">This Week</button>
+                                    <button class="btn btn-secondary" id="btn-regenerate">Regenerate</button>
+                                </div>
+                            </div>
+                            
+                            <div class="timetable-list" id="timetable-list">
+                                <!-- Timetable items will be inserted here by JS -->
+                            </div>
+                        </section>
 
-          <div class="stat-card" id="statDeadline">
-            <div class="stat-icon-wrap orange">
-              <span class="material-icons-round">event</span>
-            </div>
-            <div class="stat-info">
-              <span class="stat-value" id="statDeadlineVal">12 Days</span>
-              <span class="stat-label">Next Deadline</span>
-              <span class="stat-sub" id="statDeadlineSub">Physics — Wave Optics</span>
-            </div>
-          </div>
+                        <!-- AI Subject Priority -->
+                        <section class="card priority-section">
+                            <div class="section-header">
+                                <h2>AI Subject Priority</h2>
+                                <p>Subjects are prioritized using exam date, difficulty, progress and weak topics.</p>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="high">High</button>
+                                <button class="filter-btn" data-filter="medium">Medium</button>
+                                <button class="filter-btn" data-filter="low">Low</button>
+                            </div>
 
-          <div class="stat-card" id="statStreak">
-            <div class="stat-icon-wrap red">
-              <span class="material-icons-round">local_fire_department</span>
-            </div>
-            <div class="stat-info">
-              <span class="stat-value" id="statStreakVal">14 Days</span>
-              <span class="stat-label">Study Streak</span>
-              <span class="stat-sub">🔥 Keep it going!</span>
-            </div>
-          </div>
+                            <div class="priority-list" id="priority-list">
+                                <!-- Subject cards inserted by JS -->
+                            </div>
+                        </section>
+                    </div>
 
-          <div class="stat-card" id="statPending">
-            <div class="stat-icon-wrap teal">
-              <span class="material-icons-round">pending_actions</span>
-            </div>
-            <div class="stat-info">
-              <span class="stat-value" id="statPendingVal">3 Tasks</span>
-              <span class="stat-label">Pending Tasks</span>
-              <span class="stat-sub">Need completion</span>
-            </div>
-          </div>
-        </section>
+                    <!-- Right Column -->
+                    <div class="column-right">
+                        <!-- AI Insights -->
+                        <section class="card highlight-card insights-card">
+                            <div class="section-header">
+                                <h2>💡 AI Insights</h2>
+                            </div>
+                            <div class="insights-list" id="insights-list">
+                                <!-- Insights inserted by JS -->
+                            </div>
+                        </section>
 
-        <!-- Today's Study Plan + AI Recommendation -->
-        <section class="plan-ai-row">
-          <div class="todays-plan-section">
-            <div class="section-header">
-              <div>
-                <h2>Today's Study Plan</h2>
-                <p class="section-sub">Intelligently organized by AI based on your priorities</p>
-              </div>
-              <button class="btn btn-outline btn-sm" id="addTaskBtn">
-                <span class="material-icons-round">add</span>
-                Add Task
-              </button>
+                        <!-- AI Recommendations -->
+                        <section class="card recommendations-section">
+                            <div class="section-header">
+                                <h2>🎯 AI Study Recommendations</h2>
+                            </div>
+                            <div class="recommendations-list" id="recommendations-list">
+                                <!-- Recommendations inserted by JS -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
             </div>
-            <div class="plan-timeline" id="planTimeline">
-              <!-- Populated by JS -->
-            </div>
-          </div>
-
-          <div class="ai-recommend-card" id="aiRecommendCard">
-            <div class="ai-rec-header">
-              <span class="material-icons-round">auto_awesome</span>
-              <span>AI Recommendation</span>
-            </div>
-            <p class="ai-rec-text" id="aiRecText">
-              Your <strong>Mathematics</strong> progress is lower than your target. Spend today's second study session revising important concepts and solving practice questions.
-            </p>
-            <button class="btn btn-ai-primary" id="startAiLesson">
-              <span class="material-icons-round">play_arrow</span>
-              Start AI Smart Lesson
-            </button>
-            <div class="ai-rec-illustration">
-              <span class="material-icons-round">psychology</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- Weekly Progress Chart + Upcoming Tasks -->
-        <section class="bottom-row">
-          <div class="chart-section">
-            <div class="section-header">
-              <div>
-                <h2>Weekly Study Progress</h2>
-                <p class="section-sub">Your study hours this week</p>
-              </div>
-              <div class="chart-legend">
-                <span class="legend-item"><span class="legend-dot blue"></span>Study Hours</span>
-                <span class="legend-item"><span class="legend-dot green"></span>Target</span>
-              </div>
-            </div>
-            <div class="chart-container" id="weeklyChart">
-              <!-- Canvas chart rendered by JS -->
-              <canvas id="weeklyCanvas"></canvas>
-            </div>
-          </div>
-
-          <div class="upcoming-section">
-            <div class="section-header">
-              <div>
-                <h2>Upcoming Tasks</h2>
-                <p class="section-sub">What's coming next</p>
-              </div>
-            </div>
-            <div class="upcoming-list" id="upcomingList">
-              <!-- Populated by JS -->
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <!-- ===== PAGE: MY SUBJECTS ===== -->
-      <main class="page-content hidden" id="page-subjects">
-        <div class="page-top-bar">
-          <div>
-            <h1>My Subjects</h1>
-            <p class="section-sub">Manage and track your enrolled subjects</p>
-          </div>
-          <button class="btn btn-primary" id="addSubjectBtn">
-            <span class="material-icons-round">add</span>
-            Add Subject
-          </button>
-        </div>
-        <div class="subjects-grid" id="subjectsGrid">
-          <!-- Populated by JS -->
-        </div>
-      </main>
-
-      <!-- ===== PAGE: STUDY PLANNER ===== -->
-      <main class="page-content hidden" id="page-planner">
-        <div class="page-top-bar">
-          <div>
-            <h1>Study Planner</h1>
-            <p class="section-sub">Plan and schedule your study sessions</p>
-          </div>
-          <button class="btn btn-primary" id="newPlanBtn">
-            <span class="material-icons-round">add</span>
-            New Session
-          </button>
-        </div>
-        <div class="planner-board" id="plannerBoard">
-          <div class="planner-column" id="plannerTodo">
-            <div class="col-header todo">
-              <span class="material-icons-round">radio_button_unchecked</span>
-              <h3>To Do</h3>
-              <span class="col-count" id="todoCount">0</span>
-            </div>
-            <div class="col-body" id="todoBody"></div>
-          </div>
-          <div class="planner-column" id="plannerProgress">
-            <div class="col-header progress">
-              <span class="material-icons-round">timelapse</span>
-              <h3>In Progress</h3>
-              <span class="col-count" id="progressCount">0</span>
-            </div>
-            <div class="col-body" id="progressBody"></div>
-          </div>
-          <div class="planner-column" id="plannerDone">
-            <div class="col-header done">
-              <span class="material-icons-round">check_circle</span>
-              <h3>Completed</h3>
-              <span class="col-count" id="doneCount">0</span>
-            </div>
-            <div class="col-body" id="doneBody"></div>
-          </div>
-        </div>
-      </main>
-
-      <!-- ===== PAGE: CALENDAR ===== -->
-      <main class="page-content hidden" id="page-calendar">
-        <div class="page-top-bar">
-          <div>
-            <h1>Calendar</h1>
-            <p class="section-sub">View your study schedule on the calendar</p>
-          </div>
-          <div class="cal-nav">
-            <button class="btn btn-outline btn-sm" id="calPrev"><span class="material-icons-round">chevron_left</span></button>
-            <span class="cal-month-label" id="calMonthLabel">August 2026</span>
-            <button class="btn btn-outline btn-sm" id="calNext"><span class="material-icons-round">chevron_right</span></button>
-          </div>
-        </div>
-        <div class="calendar-grid" id="calendarGrid">
-          <!-- Populated by JS -->
-        </div>
-        <div class="cal-events-panel" id="calEventsPanel">
-          <h3 id="calEventsTitle">Events</h3>
-          <div id="calEventsList"></div>
-        </div>
-      </main>
-
-      <!-- ===== PAGE: SMART LEARNING ===== -->
-      <main class="page-content hidden" id="page-smartlearning">
-        <div class="page-top-bar">
-          <div>
-            <h1>Smart Learning</h1>
-            <p class="section-sub">AI-powered personalized learning paths</p>
-          </div>
-        </div>
-        <div class="smart-learning-grid" id="smartLearningGrid">
-          <!-- Populated by JS -->
-        </div>
-      </main>
-
-      <!-- ===== PAGE: QUIZZES ===== -->
-      <main class="page-content hidden" id="page-quizzes">
-        <div class="page-top-bar">
-          <div>
-            <h1>Quizzes</h1>
-            <p class="section-sub">Test your knowledge with AI-generated quizzes</p>
-          </div>
-          <button class="btn btn-primary" id="generateQuizBtn">
-            <span class="material-icons-round">auto_awesome</span>
-            Generate Quiz
-          </button>
-        </div>
-        <div class="quizzes-grid" id="quizzesGrid">
-          <!-- Populated by JS -->
-        </div>
-      </main>
-
-      <!-- ===== PAGE: PROGRESS ===== -->
-      <main class="page-content hidden" id="page-progress">
-        <div class="page-top-bar">
-          <div>
-            <h1>Progress</h1>
-            <p class="section-sub">Track your study performance and growth</p>
-          </div>
-        </div>
-        <div class="progress-overview" id="progressOverview">
-          <!-- Populated by JS -->
-        </div>
-      </main>
-
-      <!-- ===== PAGE: GOALS ===== -->
-      <main class="page-content hidden" id="page-goals">
-        <div class="page-top-bar">
-          <div>
-            <h1>Goals</h1>
-            <p class="section-sub">Set and track your study goals</p>
-          </div>
-          <button class="btn btn-primary" id="addGoalBtn">
-            <span class="material-icons-round">add</span>
-            Add Goal
-          </button>
-        </div>
-        <div class="goals-list" id="goalsList">
-          <!-- Populated by JS -->
-        </div>
-      </main>
-
-      <!-- ===== PAGE: AI ASSISTANT ===== -->
-      <main class="page-content hidden" id="page-assistant">
-        <div class="page-top-bar">
-          <div>
-            <h1>AI Assistant</h1>
-            <p class="section-sub">Your personal AI study companion</p>
-          </div>
-        </div>
-        <div class="assistant-container" id="assistantContainer">
-          <div class="chat-messages" id="chatMessages">
-            <div class="chat-bubble ai">
-              <span class="material-icons-round">smart_toy</span>
-              <div>
-                <p>Hello! I'm your AI Study Assistant. I can help you plan study sessions, explain concepts, create practice questions, and optimize your schedule. How can I help you today?</p>
-              </div>
-            </div>
-          </div>
-          <div class="chat-input-bar">
-            <input type="text" id="chatInput" placeholder="Ask me anything about your studies..." />
-            <button class="btn btn-primary btn-icon" id="chatSend">
-              <span class="material-icons-round">send</span>
-            </button>
-          </div>
-        </div>
-      </main>
-
-      <!-- ===== PAGE: SETTINGS ===== -->
-      <main class="page-content hidden" id="page-settings">
-        <div class="page-top-bar">
-          <div>
-            <h1>Settings</h1>
-            <p class="section-sub">Customize your study planner</p>
-          </div>
-        </div>
-        <div class="settings-sections" id="settingsSections">
-          <div class="settings-card">
-            <h3><span class="material-icons-round">person</span> Profile Settings</h3>
-            <div class="setting-row">
-              <label for="settingName">Full Name</label>
-              <input type="text" id="settingName" value="Vishv Shah" />
-            </div>
-            <div class="setting-row">
-              <label for="settingEmail">Email</label>
-              <input type="email" id="settingEmail" value="vishv@student.edu" />
-            </div>
-            <div class="setting-row">
-              <label for="settingTarget">Daily Study Target (hours)</label>
-              <input type="number" id="settingTarget" value="4" min="1" max="16" />
-            </div>
-            <button class="btn btn-primary" id="saveProfileBtn">Save Profile</button>
-          </div>
-          <div class="settings-card">
-            <h3><span class="material-icons-round">palette</span> Appearance</h3>
-            <div class="setting-row">
-              <label>Theme</label>
-              <div class="theme-options">
-                <button class="theme-btn active" data-theme="light" id="themeLight">☀️ Light</button>
-                <button class="theme-btn" data-theme="dark" id="themeDark">🌙 Dark</button>
-              </div>
-            </div>
-          </div>
-          <div class="settings-card">
-            <h3><span class="material-icons-round">notifications</span> Notifications</h3>
-            <div class="setting-row">
-              <label>Study Reminders</label>
-              <label class="toggle-switch">
-                <input type="checkbox" id="settingReminders" checked />
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-            <div class="setting-row">
-              <label>Deadline Alerts</label>
-              <label class="toggle-switch">
-                <input type="checkbox" id="settingDeadlineAlerts" checked />
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </main>
+        </main>
     </div>
-  </div>
 
-  <!-- Add Task Modal -->
-  <div class="modal-overlay hidden" id="addTaskModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>Add Study Task</h3>
-        <button class="icon-btn modal-close" id="closeTaskModal"><span class="material-icons-round">close</span></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="taskSubject">Subject</label>
-          <select id="taskSubject">
-            <option value="">Select subject...</option>
-          </select>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h2 id="loading-text">AI is analyzing your subjects...</h2>
+            <div class="loading-progress">
+                <div class="progress-bar-fill" id="loading-progress-fill"></div>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="taskLesson">Lesson / Topic</label>
-          <input type="text" id="taskLesson" placeholder="e.g. Quadratic Equations" />
-        </div>
-        <div class="form-group">
-          <label for="taskDuration">Duration (minutes)</label>
-          <input type="number" id="taskDuration" value="45" min="10" max="180" />
-        </div>
-        <div class="form-group">
-          <label for="taskPriority">Priority</label>
-          <select id="taskPriority">
-            <option value="high">🔴 High</option>
-            <option value="medium" selected>🟡 Medium</option>
-            <option value="low">🟢 Low</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="taskTime">Start Time</label>
-          <input type="time" id="taskTime" value="09:00" />
-        </div>
-        <div class="form-group">
-          <label for="taskDate">Due Date</label>
-          <input type="date" id="taskDate" />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline" id="cancelTaskModal">Cancel</button>
-        <button class="btn btn-primary" id="saveTaskBtn">
-          <span class="material-icons-round">check</span>
-          Save Task
-        </button>
-      </div>
     </div>
-  </div>
 
-  <!-- Add Subject Modal -->
-  <div class="modal-overlay hidden" id="addSubjectModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>Add Subject</h3>
-        <button class="icon-btn modal-close" id="closeSubjectModal"><span class="material-icons-round">close</span></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="subjectName">Subject Name</label>
-          <input type="text" id="subjectName" placeholder="e.g. Mathematics" />
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirm-modal">
+        <div class="modal">
+            <h2>Regenerate Timetable?</h2>
+            <p>Generate a new timetable based on your current preferences?</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="btn-cancel-modal">Cancel</button>
+                <button class="btn btn-primary" id="btn-confirm-modal">Yes, Regenerate</button>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="subjectColor">Color</label>
-          <div class="color-picker" id="subjectColorPicker">
-            <button class="color-dot active" data-color="#4F6BF6" style="background:#4F6BF6;"></button>
-            <button class="color-dot" data-color="#10B981" style="background:#10B981;"></button>
-            <button class="color-dot" data-color="#8B5CF6" style="background:#8B5CF6;"></button>
-            <button class="color-dot" data-color="#F59E0B" style="background:#F59E0B;"></button>
-            <button class="color-dot" data-color="#EF4444" style="background:#EF4444;"></button>
-            <button class="color-dot" data-color="#06B6D4" style="background:#06B6D4;"></button>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="subjectTarget">Weekly Target (hours)</label>
-          <input type="number" id="subjectTarget" value="6" min="1" max="40" />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline" id="cancelSubjectModal">Cancel</button>
-        <button class="btn btn-primary" id="saveSubjectBtn">
-          <span class="material-icons-round">check</span>
-          Save Subject
-        </button>
-      </div>
     </div>
-  </div>
 
-  <!-- Add Goal Modal -->
-  <div class="modal-overlay hidden" id="addGoalModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>Add Goal</h3>
-        <button class="icon-btn modal-close" id="closeGoalModal"><span class="material-icons-round">close</span></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="goalTitle">Goal Title</label>
-          <input type="text" id="goalTitle" placeholder="e.g. Complete Calculus chapter" />
-        </div>
-        <div class="form-group">
-          <label for="goalSubject">Related Subject</label>
-          <select id="goalSubject">
-            <option value="">Select subject...</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="goalDeadline">Deadline</label>
-          <input type="date" id="goalDeadline" />
-        </div>
-        <div class="form-group">
-          <label for="goalDescription">Description</label>
-          <textarea id="goalDescription" rows="3" placeholder="Describe your goal..."></textarea>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline" id="cancelGoalModal">Cancel</button>
-        <button class="btn btn-primary" id="saveGoalBtn">
-          <span class="material-icons-round">check</span>
-          Save Goal
-        </button>
-      </div>
-    </div>
-  </div>
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container"></div>
 
-  <!-- Notification Toast -->
-  <div class="toast-container" id="toastContainer"></div>
-
-  <script src="db.js"></script>
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
