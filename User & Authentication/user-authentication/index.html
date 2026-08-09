@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Study Planner - Smart User Authentication</title>
+  <meta name="description" content="Secure, responsive user authentication and profile module for AI Study Planner.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Demo Disclaimer Banner -->
+  <div class="disclaimer-banner" role="status" aria-label="Demo Prototype Note">
+    <div class="disclaimer-content">
+      <span class="badge">PROTOTYPE</span>
+      <span>Demo authentication — connect to a secure backend for production use.</span>
+    </div>
+  </div>
+
+  <!-- Main View Container -->
+  <main id="app-container">
+
+    <!-- AUTH SECTION (Login & Signup) -->
+    <section id="auth-section" class="auth-container">
+      
+      <!-- Left side: Branding -->
+      <div class="auth-branding">
+        <div class="branding-header">
+          <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo-grad)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="logo-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#818cf8"/>
+                  <stop offset="1" stop-color="#c084fc"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="logo-text">StudyAI</span>
+          </div>
+        </div>
+
+        <div class="branding-body">
+          <h1 class="branding-title" data-i18n="branding-title" data-i18n-html="true">Study Smarter.<br>Achieve More.</h1>
+          <p class="branding-subtitle" data-i18n="branding-subtitle">Your personalized AI-powered study planning assistant.</p>
+          
+          <!-- Premium Educational / AI Visual Illustration -->
+          <div class="branding-illustration">
+            <svg class="illustration-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid background -->
+              <path d="M0 50 H400 M0 100 H400 M0 150 H400 M0 200 H400 M0 250 H400 M50 0 V300 M100 0 V300 M150 0 V300 M200 0 V300 M250 0 V300 M300 0 V300 M350 0 V300" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+              
+              <!-- Floating AI Brain Nodes -->
+              <g class="floating-brain" opacity="0.85">
+                <circle cx="200" cy="140" r="45" fill="url(#brain-grad)" filter="url(#glow)"/>
+                <path d="M185 130 C185 115, 215 115, 215 130 C225 130, 225 150, 215 150 C215 165, 185 165, 185 150 C175 150, 175 130, 185 130 Z" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2" fill="none"/>
+                <!-- Node lines -->
+                <line x1="200" y1="95" x2="200" y2="60" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <line x1="245" y1="140" x2="290" y2="140" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <line x1="155" y1="140" x2="110" y2="140" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <line x1="200" y1="185" x2="200" y2="220" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="3 3"/>
+              </g>
+
+              <!-- Node points -->
+              <circle class="pulse-node" cx="200" cy="60" r="6" fill="#818cf8"/>
+              <circle class="pulse-node" cx="290" cy="140" r="6" fill="#c084fc"/>
+              <circle class="pulse-node" cx="110" cy="140" r="6" fill="#38bdf8"/>
+              <circle class="pulse-node" cx="200" cy="220" r="6" fill="#34d399"/>
+
+              <!-- Graph bar lines representation -->
+              <rect x="95" y="200" width="30" height="40" rx="4" fill="rgba(255, 255, 255, 0.1)"/>
+              <rect x="275" y="80" width="30" height="50" rx="4" fill="rgba(255, 255, 255, 0.1)"/>
+              
+              <!-- Floating stats card simulation -->
+              <g class="floating-card-1">
+                <rect x="230" y="180" width="120" height="60" rx="10" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
+                <text x="242" y="205" fill="#f8fafc" font-family="'Outfit', sans-serif" font-size="12" font-weight="600">Daily Goal</text>
+                <text x="242" y="225" fill="#a5b4fc" font-family="'Inter', sans-serif" font-size="11">4 hrs study done</text>
+                <circle cx="325" cy="210" r="12" fill="#34d399" opacity="0.2"/>
+                <path d="M321 210 L324 213 L329 207" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+              </g>
+
+              <g class="floating-card-2">
+                <rect x="50" y="60" width="120" height="60" rx="10" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
+                <text x="62" y="85" fill="#f8fafc" font-family="'Outfit', sans-serif" font-size="12" font-weight="600">AI Score</text>
+                <text x="62" y="105" fill="#c084fc" font-family="'Inter', sans-serif" font-size="14" font-weight="700">A+ Grade</text>
+                <circle cx="145" cy="90" r="10" fill="#c084fc"/>
+                <path d="M145 85 V95 M141 90 H149" stroke="#fff" stroke-width="1.5"/>
+              </g>
+
+              <!-- Gradients & Filters -->
+              <defs>
+                <linearGradient id="brain-grad" x1="155" y1="95" x2="245" y2="185" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.6"/>
+                  <stop offset="100%" stop-color="#9333ea" stop-opacity="0.6"/>
+                </linearGradient>
+                <filter id="glow" x="145" y="85" width="110" height="110" filterUnits="userSpaceOnUse">
+                  <feGaussianBlur stdDeviation="8" result="blur"/>
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+              </defs>
+            </svg>
+          </div>
+        </div>
+
+        <div class="branding-footer">
+          <p>© 2026 StudyAI Inc. All rights reserved.</p>
+        </div>
+      </div>
+
+      <!-- Right side: Content Area containing active form -->
+      <div class="auth-form-container">
+        
+        <!-- LOGIN CARD -->
+        <div id="login-card" class="auth-card active">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="login-title">Welcome Back</h2>
+            <p class="card-subtitle" data-i18n="login-subtitle">Sign in to continue your study journey.</p>
+          </div>
+
+          <form id="login-form" novalidate>
+            <!-- Email Input -->
+            <div class="form-group">
+              <label for="login-email" data-i18n="login-email-label">Email</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <input type="email" id="login-email" placeholder="Enter your email" required data-i18n="login-email-placeholder">
+              </div>
+              <span class="error-msg" id="login-email-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+              <label for="login-password" data-i18n="login-password-label">Password</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="login-password" placeholder="Enter your password" required data-i18n="login-password-placeholder">
+                <button type="button" class="password-toggle" data-target="login-password" aria-label="Toggle password visibility">
+                  <svg class="eye-icon eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-icon eye-closed hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+              <span class="error-msg" id="login-password-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Remember me & Actions -->
+            <div class="form-options">
+              <label class="checkbox-container">
+                <input type="checkbox" id="login-remember">
+                <span class="checkmark"></span>
+                <span data-i18n="login-remember-label">Remember me</span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-block">
+              <span data-i18n="login-btn">Login</span>
+              <svg class="btn-spinner hidden" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle></svg>
+            </button>
+          </form>
+
+          <div class="card-footer">
+            <p><span data-i18n="login-footer-text">Don't have an account?</span> <button type="button" class="btn-link" id="go-to-signup" data-i18n="login-create-account">Create Account</button></p>
+            <div class="demo-credentials-box">
+              <strong>Demo Credentials:</strong><br>
+              Email: <code>student@example.com</code><br>
+              Password: <code>student123</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIGNUP CARD -->
+        <div id="signup-card" class="auth-card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="signup-title">Create Your Account</h2>
+            <p class="card-subtitle" data-i18n="signup-subtitle">Start planning your studies with AI.</p>
+          </div>
+
+          <form id="signup-form" novalidate>
+            <!-- Full Name Input -->
+            <div class="form-group">
+              <label for="signup-name" data-i18n="signup-name-label">Full Name</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="signup-name" placeholder="Enter your full name" required data-i18n="signup-name-placeholder">
+              </div>
+              <span class="error-msg" id="signup-name-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Email Input -->
+            <div class="form-group">
+              <label for="signup-email" data-i18n="signup-email-label">Email Address</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <input type="email" id="signup-email" placeholder="Enter your email" required data-i18n="signup-email-placeholder">
+              </div>
+              <span class="error-msg" id="signup-email-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+              <label for="signup-password" data-i18n="signup-password-label">Password</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="signup-password" placeholder="Create a password" required data-i18n="signup-password-placeholder">
+                <button type="button" class="password-toggle" data-target="signup-password" aria-label="Toggle password visibility">
+                  <svg class="eye-icon eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-icon eye-closed hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+              
+              <!-- Password Strength Component -->
+              <div class="password-strength-container">
+                <div class="strength-labels">
+                  <span data-i18n="signup-strength-title">Password Strength</span>
+                  <span id="strength-status-text" class="strength-text-weak">Weak</span>
+                </div>
+                <div class="strength-bar-bg">
+                  <div id="strength-bar" class="strength-bar-weak"></div>
+                </div>
+                <ul class="strength-feedback" id="strength-feedback-list">
+                  <li id="req-length" class="req-failed" data-i18n="signup-req-length">Min 6 characters</li>
+                  <li id="req-case" class="req-failed" data-i18n="signup-req-case">Uppercase & Lowercase</li>
+                  <li id="req-num-spec" class="req-failed" data-i18n="signup-req-num-spec">Numbers or Special Characters</li>
+                </ul>
+              </div>
+              <span class="error-msg" id="signup-password-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div class="form-group">
+              <label for="signup-confirm-password" data-i18n="signup-confirm-label">Confirm Password</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required data-i18n="signup-confirm-placeholder">
+                <button type="button" class="password-toggle" data-target="signup-confirm-password" aria-label="Toggle password visibility">
+                  <svg class="eye-icon eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-icon eye-closed hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+              <span class="error-msg" id="signup-confirm-password-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Terms & Conditions Checkbox -->
+            <div class="form-options">
+              <label class="checkbox-container">
+                <input type="checkbox" id="signup-terms" required>
+                <span class="checkmark"></span>
+                <span data-i18n="signup-terms-text">I agree to the</span>&nbsp;<a href="#" class="inline-link" onclick="event.preventDefault(); alert('Terms & Conditions: Please enjoy this prototype build!');" data-i18n="signup-terms-link">Terms & Conditions</a>
+              </label>
+              <span class="error-msg" id="signup-terms-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-block">
+              <span data-i18n="signup-btn">Create Account</span>
+              <svg class="btn-spinner hidden" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle></svg>
+            </button>
+          </form>
+
+          <div class="card-footer">
+            <p><span data-i18n="signup-footer-text">Already have an account?</span> <button type="button" class="btn-link" id="go-to-login" data-i18n="signup-login-link">Login</button></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AUTHENTICATED DASHBOARD SECTION -->
+    <section id="dashboard-section" class="dashboard-container hidden">
+      <!-- Top Navbar -->
+      <header class="main-header">
+        <div class="header-left">
+          <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo-grad-dash)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="logo-grad-dash" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#818cf8"/>
+                  <stop offset="1" stop-color="#c084fc"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="logo-text">StudyAI</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Notification Button -->
+          <button type="button" class="nav-icon-btn" aria-label="Notifications" onclick="showToast('No new notifications.', 'info')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notification-badge"></span>
+          </button>
+
+          <!-- User Quick Profile Dropdown -->
+          <div class="user-dropdown-container">
+            <button type="button" class="user-dropdown-trigger" id="dropdown-btn" aria-expanded="false" aria-label="User menu">
+              <div class="avatar-sm" id="header-avatar">DS</div>
+              <span class="username-text" id="header-username">Demo Student</span>
+              <svg class="dropdown-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+
+            <!-- Dropdown Menu items -->
+            <div class="dropdown-menu" id="user-dropdown-menu">
+              <button type="button" class="dropdown-item" id="nav-profile-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span data-i18n="nav-profile">My Profile</span>
+              </button>
+              <button type="button" class="dropdown-item" id="nav-settings-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span data-i18n="nav-settings">Settings</span>
+              </button>
+              <hr class="dropdown-divider">
+              <button type="button" class="dropdown-item logout-item" id="nav-logout-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span data-i18n="nav-logout">Logout</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Main View -->
+      <div class="dashboard-content">
+              <!-- Welcome Header Banner -->
+        <div class="welcome-banner">
+          <div class="welcome-text-wrapper">
+            <h2 class="welcome-title"><span data-i18n="dash-welcome">Welcome back,</span> <span id="dash-display-name">Demo Student</span>!</h2>
+            <p class="welcome-subtitle" data-i18n="dash-subtitle">Ready to continue your study journey? Your AI assistant prepared your daily schedule.</p>
+          </div>
+          <div class="welcome-badge">
+            <span class="ai-badge">AI Active</span>
+          </div>
+        </div>
+
+        <!-- Metric Grid -->
+        <div class="stats-grid">
+          <!-- Card 1 -->
+          <div class="stats-card">
+            <div class="stats-card-header">
+              <span class="card-icon-wrapper bg-indigo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
+              <span class="stats-title" data-i18n="dash-study-title">Today's Study</span>
+            </div>
+            <div class="stats-value" id="dash-study-hours">4 Hours</div>
+            <p class="stats-subtext" data-i18n="dash-study-sub">Target: 4h recommended by AI</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="stats-card">
+            <div class="stats-card-header">
+              <span class="card-icon-wrapper bg-green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="stats-title" data-i18n="dash-tasks-title">Completed Tasks</span>
+            </div>
+            <div class="stats-value">12</div>
+            <p class="stats-subtext" data-i18n="dash-tasks-sub">85% completions this week</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="stats-card">
+            <div class="stats-card-header">
+              <span class="card-icon-wrapper bg-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/></svg>
+              </span>
+              <span class="stats-title" data-i18n="dash-progress-title">Overall Progress</span>
+            </div>
+            <div class="stats-value-wrapper">
+              <div class="stats-value">72%</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" style="width: 72%"></div>
+              </div>
+            </div>
+            <p class="stats-subtext" data-i18n="dash-progress-sub">+12% speed increase vs last week</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="stats-card">
+            <div class="stats-card-header">
+              <span class="card-icon-wrapper bg-orange">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </span>
+              <span class="stats-title" data-i18n="dash-exams-title">Upcoming Exams</span>
+            </div>
+            <div class="stats-value">3</div>
+            <p class="stats-subtext" data-i18n="dash-exams-sub">Next: Calculus in 4 days</p>
+          </div>
+        </div>
+
+        <!-- Dashboard Widgets Row -->
+        <div class="dashboard-widgets">
+          <!-- Widget: Study Goal & AI Recommendations -->
+          <div class="widget-card">
+            <h3 class="widget-title" data-i18n="dash-suggestions-title">Active AI Planner Suggestions</h3>
+            <ul class="suggestion-list">
+              <li>
+                <span class="suggestion-tag tip">SUGGESTION</span>
+                <p>
+                  <span data-i18n="dash-suggestion-1-start">Based on your current goal</span>
+                  <strong>"<span id="dash-study-goal">Become a Full Stack Developer</span>"</strong>,
+                  <span data-i18n="dash-suggestion-1-end">you should practice writing algorithms for at least 1 hour today.</span>
+                </p>
+              </li>
+              <li>
+                <span class="suggestion-tag speed">ALERT</span>
+                <p data-i18n="dash-suggestion-2">Calculus exam prep is falling behind by 2 hours. Try adjusting your settings to receive more push reminders.</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Widget: Quick Access to Profile/Session Info -->
+          <div class="widget-card">
+            <h3 class="widget-title" data-i18n="dash-actions-title">Quick Actions</h3>
+            <div class="quick-actions-grid">
+              <button class="btn btn-secondary" onclick="openModal('profile-modal')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span data-i18n="dash-view-profile">View Profile</span>
+              </button>
+              <button class="btn btn-secondary" onclick="openModal('settings-modal')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span data-i18n="dash-manage-settings">Manage Settings</span>
+              </button>
+            </div>
+        </div>
+      </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- REUSABLE MODALS -->
+
+  <!-- PROFILE MODAL (Includes View Profile, Edit Profile, Change Password, and Session Info tabs for responsive layout) -->
+  <div class="modal-overlay" id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="modal-profile-title">
+    <div class="modal-card modal-large">
+      <div class="modal-header">
+        <h3 id="modal-profile-title" class="modal-title" data-i18n="modal-profile-title">My Profile</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('profile-modal')" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <!-- Two Column responsive wrapper -->
+        <div class="profile-two-column">
+          
+          <!-- Column 1: Profile & Editing -->
+          <div class="profile-left-col">
+            <!-- View Profile Section -->
+            <div id="profile-view-section">
+              <div class="profile-avatar-wrapper">
+                <div class="avatar-lg" id="profile-avatar-img">DS</div>
+                
+                <!-- File Upload with immediate preview & Base64 storage -->
+                <div class="file-upload-container">
+                  <label for="avatar-input" class="btn btn-secondary btn-sm" data-i18n="profile-avatar-upload">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    Upload Avatar
+                  </label>
+                  <input type="file" id="avatar-input" accept=".jpg, .jpeg, .png, .webp" style="display: none;">
+                  <span class="file-hint" data-i18n="profile-avatar-hint">JPG, PNG, WEBP allowed.</span>
+                </div>
+              </div>
+
+              <!-- Profile Details -->
+              <div class="profile-details-list">
+                <div class="detail-item">
+                  <span class="detail-label" data-i18n="profile-name-label">Full Name</span>
+                  <span class="detail-value" id="profile-detail-name">Demo Student</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label" data-i18n="profile-email-label">Email Address</span>
+                  <span class="detail-value" id="profile-detail-email">student@example.com</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label" data-i18n="profile-goal-label">Current Study Goal</span>
+                  <span class="detail-value italic" id="profile-detail-goal">Become a Full Stack Developer</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label" data-i18n="profile-hours-label">Daily Study Hours</span>
+                  <span class="detail-value" id="profile-detail-hours">2 Hours</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label" data-i18n="profile-since-label">Member Since</span>
+                  <span class="detail-value" id="profile-detail-date">August 9, 2026</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label" data-i18n="profile-status-label">Account Status</span>
+                  <span class="detail-value status-badge status-active" data-i18n="profile-status-val">Active</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.5rem;">
+                <button type="button" class="btn btn-primary btn-block" id="btn-edit-profile-toggle" data-i18n="profile-edit-btn">Edit Profile</button>
+              </div>
+            </div>
+
+            <!-- Edit Profile Section (Initially Hidden) -->
+            <div id="profile-edit-section" class="hidden">
+              <h4 class="sub-section-title" data-i18n="profile-edit-title">Edit Profile Information</h4>
+              <form id="edit-profile-form" novalidate>
+                <div class="form-group">
+                  <label for="edit-name" data-i18n="profile-name-label">Full Name</label>
+                  <input type="text" id="edit-name" required>
+                  <span class="error-msg" id="edit-name-error"></span>
+                </div>
+                <div class="form-group">
+                  <label for="edit-email" data-i18n="profile-email-label">Email Address</label>
+                  <input type="email" id="edit-email" required>
+                  <span class="error-msg" id="edit-email-error"></span>
+                </div>
+                <div class="form-group">
+                  <label for="edit-goal" data-i18n="profile-goal-label-edit">Study Goal</label>
+                  <input type="text" id="edit-goal" placeholder="e.g. Become a Full Stack Developer">
+                </div>
+                <div class="form-group">
+                  <label for="edit-hours" data-i18n="profile-hours-label-edit">Daily Study Hours</label>
+                  <div class="select-wrapper">
+                    <select id="edit-hours">
+                      <option value="1" data-i18n="hours-1">1 Hour</option>
+                      <option value="2" data-i18n="hours-2">2 Hours</option>
+                      <option value="3" data-i18n="hours-3">3 Hours</option>
+                      <option value="4" data-i18n="hours-4">4 Hours</option>
+                      <option value="5+" data-i18n="hours-5">5+ Hours</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-actions-row">
+                  <button type="button" class="btn btn-secondary" id="btn-edit-profile-cancel" data-i18n="profile-edit-cancel">Cancel</button>
+                  <button type="submit" class="btn btn-primary" data-i18n="profile-edit-save">Save Changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Column 2: Account Security, Password and Sessions -->
+          <div class="profile-right-col">
+            <!-- Change Password UI -->
+            <div class="profile-section-card">
+              <h4 class="sub-section-title" data-i18n="profile-change-pw">Change Password</h4>
+              <form id="change-password-form" novalidate>
+                <div class="form-group">
+                  <label for="cp-current" data-i18n="profile-current-pw">Current Password</label>
+                  <div class="input-wrapper">
+                    <input type="password" id="cp-current" required>
+                    <button type="button" class="password-toggle" data-target="cp-current" aria-label="Toggle password visibility">
+                      <svg class="eye-icon eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      <svg class="eye-icon eye-closed hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    </button>
+                  </div>
+                  <span class="error-msg" id="cp-current-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="cp-new" data-i18n="profile-new-pw">New Password</label>
+                  <div class="input-wrapper">
+                    <input type="password" id="cp-new" required>
+                    <button type="button" class="password-toggle" data-target="cp-new" aria-label="Toggle password visibility">
+                      <svg class="eye-icon eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      <svg class="eye-icon eye-closed hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    </button>
+                  </div>
+                  <span class="error-msg" id="cp-new-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="cp-confirm" data-i18n="profile-confirm-pw">Confirm New Password</label>
+                  <div class="input-wrapper">
+                    <input type="password" id="cp-confirm" required>
+                    <button type="button" class="password-toggle" data-target="cp-confirm" aria-label="Toggle password visibility">
+                      <svg class="eye-icon eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      <svg class="eye-icon eye-closed hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    </button>
+                  </div>
+                  <span class="error-msg" id="cp-confirm-error"></span>
+                </div>
+
+                <button type="submit" class="btn btn-secondary btn-block" data-i18n="profile-update-pw-btn">Update Password</button>
+              </form>
+            </div>
+
+            <!-- Session Information -->
+            <div class="profile-section-card" style="margin-top: 1.5rem;">
+              <h4 class="sub-section-title" data-i18n="profile-session-title">Active Session Information</h4>
+              <div class="session-info-list">
+                <div class="session-info-item">
+                  <span data-i18n="profile-session-status">Status:</span>
+                  <span class="session-status"><span class="dot-online"></span> <span data-i18n="profile-session-online">Active Now</span></span>
+                </div>
+                <div class="session-info-item">
+                  <span data-i18n="profile-session-login-time">Login Time:</span>
+                  <span id="session-login-time">August 9, 2026 15:28 PM</span>
+                </div>
+                <div class="session-info-item">
+                  <span data-i18n="profile-session-type">Session Type:</span>
+                  <span id="session-type-badge" class="session-type-badge">Temporary</span>
+                </div>
+                <div class="session-info-item">
+                  <span data-i18n="profile-session-email">Connected Email:</span>
+                  <span id="session-email-val" class="session-email-val">student@example.com</span>
+                </div>
+              </div>
+              <button type="button" class="btn btn-danger btn-block btn-sm" id="session-logout-btn" style="margin-top: 1rem;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span data-i18n="profile-session-logout-btn">Logout from Device</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCOUNT SETTINGS MODAL -->
+  <div class="modal-overlay" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="modal-settings-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-settings-title" class="modal-title" data-i18n="modal-settings-title">Account Settings</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('settings-modal')" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="settings-form">
+          <!-- Notification Option -->
+          <div class="settings-group">
+            <div class="settings-label-wrapper">
+              <label for="settings-email-notifications" class="settings-main-label" data-i18n="settings-email-label">Email Notifications</label>
+              <p class="settings-sub-label" data-i18n="settings-email-sub">Receive AI summary emails and review reminders.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="settings-email-notifications" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Study Reminder Option -->
+          <div class="settings-group">
+            <div class="settings-label-wrapper">
+              <label for="settings-study-reminders" class="settings-main-label" data-i18n="settings-reminders-label">Study Reminders</label>
+              <p class="settings-sub-label" data-i18n="settings-reminders-sub">Get browser popups when a study block is scheduled.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="settings-study-reminders" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Dark Mode Option -->
+          <div class="settings-group">
+            <div class="settings-label-wrapper">
+              <label for="settings-dark-mode" class="settings-main-label" data-i18n="settings-dark-label">Dark Mode</label>
+              <p class="settings-sub-label" data-i18n="settings-dark-sub">Switch application theme to high-contrast dark theme.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="settings-dark-mode">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Language Dropdown -->
+          <div class="settings-group column">
+            <div class="settings-label-wrapper">
+              <label for="settings-language" class="settings-main-label" data-i18n="settings-lang-label">Language / மொழி</label>
+              <p class="settings-sub-label" data-i18n="settings-lang-sub">Set the primary app language.</p>
+            </div>
+            <div class="select-wrapper width-full" style="margin-top: 0.5rem;">
+              <select id="settings-language">
+                <option value="en">English</option>
+                <option value="ta">Tamil (தமிழ்)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions-row" style="margin-top: 2rem;">
+            <button type="button" class="btn btn-secondary" onclick="closeModal('settings-modal')" data-i18n="settings-cancel-btn">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-i18n="settings-save-btn">Save Settings</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGOUT CONFIRMATION MODAL -->
+  <div class="modal-overlay" id="logout-modal" role="dialog" aria-modal="true" aria-labelledby="modal-logout-title">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3 id="modal-logout-title" class="modal-title" data-i18n="modal-logout-title">Confirm Logout</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('logout-modal')" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p data-i18n="modal-logout-body">Are you sure you want to logout? This will terminate your session and close any active planners.</p>
+        <div class="form-actions-row" style="margin-top: 1.5rem; justify-content: flex-end;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('logout-modal')" data-i18n="modal-logout-cancel">Cancel</button>
+          <button type="button" class="btn btn-danger" id="logout-confirm-btn" data-i18n="modal-logout-confirm">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION EXPIRED MODAL -->
+  <div class="modal-overlay" id="expired-modal" role="dialog" aria-modal="true" aria-labelledby="modal-expired-title" data-backdrop="static">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3 id="modal-expired-title" class="modal-title" data-i18n="modal-expired-title">Session Expired</h3>
+      </div>
+      <div class="modal-body">
+        <p data-i18n="modal-expired-body">Your demo session has expired. Please login again to continue.</p>
+        <div class="form-actions-row" style="margin-top: 1.5rem; justify-content: center;">
+          <button type="button" class="btn btn-primary" id="session-expired-ok-btn" data-i18n="modal-expired-ok">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER (Lower right screen notifications) -->
+  <div id="toast-container" class="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
