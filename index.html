@@ -1,501 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Study Planner (Frontend Only)</title>
-    <!-- Boxicons for modern icons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Chart.js for charts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Study Planner - Progress Tracking Dashboard. Monitor your study performance, completed tasks and learning progress." />
+  <title>Progress Tracking | StudyPlanner AI</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
-    
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar">
-        <div class="logo-details">
-            <i class='bx bx-brain'></i>
-            <span class="logo_name">AI Planner</span>
-        </div>
-        <ul class="nav-links">
-            <li>
-                <a href="#" data-target="dashboard" class="active">
-                    <i class='bx bx-home-alt'></i>
-                    <span class="links_name">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" data-target="my-subjects">
-                    <i class='bx bx-book'></i>
-                    <span class="links_name">My Subjects</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" data-target="study-plan">
-                    <i class='bx bx-calendar-event'></i>
-                    <span class="links_name">Study Plan</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" data-target="tasks">
-                    <i class='bx bx-task'></i>
-                    <span class="links_name">Tasks</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" data-target="progress">
-                    <i class='bx bx-line-chart'></i>
-                    <span class="links_name">Progress</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" data-target="goals">
-                    <i class='bx bx-target-lock'></i>
-                    <span class="links_name">Goals</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" data-target="schedule">
-                    <i class='bx bx-time-five'></i>
-                    <span class="links_name">Schedule</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" data-target="ai-assistant">
-                    <i class='bx bx-bot'></i>
-                    <span class="links_name">AI Assistant</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" data-target="reminders">
-                    <i class='bx bx-bell'></i>
-                    <span class="links_name">Reminders</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" data-target="settings">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Settings</span>
-                </a>
-            </li>
-        </ul>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
+    <div class="sidebar-header">
+      <div class="logo-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="url(#logoGrad)"/>
+          <path d="M7 14l4 4 10-10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6366f1"/>
+              <stop offset="1" stop-color="#8b5cf6"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">StudyPlanner</span>
+        <span class="logo-subtitle">AI Learning Assistant</span>
+      </div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">&#10005;</button>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Dashboard Navigation">
+      <ul>
+        <li>
+          <a href="#" class="nav-item" id="nav-dashboard" aria-label="Dashboard">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </span>
+            <span class="nav-label">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" id="nav-subjects" aria-label="Subjects">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </span>
+            <span class="nav-label">Subjects</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" id="nav-planner" aria-label="AI Planner">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </span>
+            <span class="nav-label">AI Planner</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" id="nav-schedule" aria-label="Schedule and Calendar">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <span class="nav-label">Schedule &amp; Calendar</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item active" id="nav-progress" aria-label="Progress Tracking" aria-current="page">
+            <span class="nav-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+            <span class="nav-label">Progress Tracking</span>
+          </a>
+        </li>
+      </ul>
     </nav>
 
-    <!-- Main Content Area -->
-    <section class="home-section">
-        <nav class="topbar">
-            <div class="sidebar-button">
-                <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard-title">Dashboard</span>
+    <div class="sidebar-footer">
+      <div class="user-profile-mini">
+        <div class="avatar-sm" aria-hidden="true">A</div>
+        <div class="user-info-mini">
+          <span class="user-name-mini">Alex Johnson</span>
+          <span class="user-role-mini">Student</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Top Header -->
+    <header class="top-header" role="banner">
+      <div class="header-left">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle sidebar" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="header-title-group">
+          <h1 class="page-title">Progress Tracking</h1>
+          <p class="page-subtitle">Track your study performance, completed tasks and learning progress.</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <!-- Date Filter -->
+        <div class="date-filter" role="group" aria-label="Date range filter">
+          <button class="date-btn active" data-range="week" aria-pressed="true">This Week</button>
+          <button class="date-btn" data-range="today" aria-pressed="false">Today</button>
+          <button class="date-btn" data-range="month" aria-pressed="false">This Month</button>
+          <button class="date-btn" data-range="custom" aria-pressed="false">Custom</button>
+        </div>
+        <!-- Subject Filter -->
+        <div class="subject-filter-wrap">
+          <label for="subjectFilter" class="sr-only">Filter by Subject</label>
+          <select id="subjectFilter" class="subject-select" aria-label="Filter by Subject">
+            <option value="all">All Subjects</option>
+            <option value="Data Structures">Data Structures</option>
+            <option value="DBMS">DBMS</option>
+            <option value="Java">Java</option>
+            <option value="Computer Networks">Computer Networks</option>
+          </select>
+        </div>
+        <button class="add-task-btn" id="addTaskBtn" aria-label="Add new task">
+          <span aria-hidden="true">+</span> Add Task
+        </button>
+        <button class="icon-btn" id="notifBtn" aria-label="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-badge" aria-label="3 notifications">3</span>
+        </button>
+        <div class="avatar" aria-label="User profile" role="img">A</div>
+      </div>
+    </header>
+
+    <div class="content-wrapper">
+
+      <!-- Overview Statistics -->
+      <section class="stats-grid" aria-label="Overview Statistics">
+        <div class="stat-card" id="statOverall">
+          <div class="stat-card-icon bg-indigo" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="stat-card-body">
+            <p class="stat-label">Overall Progress</p>
+            <p class="stat-value" id="statOverallVal">72%</p>
+            <p class="stat-change positive" id="statOverallChange">+8% this week</p>
+          </div>
+          <div class="stat-mini-progress" aria-hidden="true">
+            <div class="mini-progress-bar bg-indigo" id="miniProgressBar" style="width:72%"></div>
+          </div>
+        </div>
+        <div class="stat-card" id="statTasks">
+          <div class="stat-card-icon bg-green" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="stat-card-body">
+            <p class="stat-label">Completed Tasks</p>
+            <p class="stat-value" id="statTasksVal">34</p>
+            <p class="stat-change neutral" id="statTasksChange">Out of 48 tasks</p>
+          </div>
+          <div class="stat-mini-progress" aria-hidden="true">
+            <div class="mini-progress-bar bg-green" id="miniTasksBar" style="width:70%"></div>
+          </div>
+        </div>
+        <div class="stat-card" id="statHours">
+          <div class="stat-card-icon bg-blue" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="stat-card-body">
+            <p class="stat-label">Study Hours</p>
+            <p class="stat-value" id="statHoursVal">28.5 hrs</p>
+            <p class="stat-change neutral" id="statHoursChange">This week</p>
+          </div>
+          <div class="stat-mini-progress" aria-hidden="true">
+            <div class="mini-progress-bar bg-blue" id="miniHoursBar" style="width:85%"></div>
+          </div>
+        </div>
+        <div class="stat-card" id="statSessions">
+          <div class="stat-card-icon bg-orange" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="stat-card-body">
+            <p class="stat-label">Study Sessions</p>
+            <p class="stat-value" id="statSessionsVal">24</p>
+            <p class="stat-change neutral" id="statSessionsChange">Completed this week</p>
+          </div>
+          <div class="stat-mini-progress" aria-hidden="true">
+            <div class="mini-progress-bar bg-orange" id="miniSessionsBar" style="width:80%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Dashboard Grid -->
+      <div class="dashboard-grid">
+
+        <!-- Left Column -->
+        <div class="dashboard-col-left">
+
+          <!-- Overall Progress Card -->
+          <section class="card overall-progress-card" aria-labelledby="overallProgressTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="overallProgressTitle">Overall Learning Progress</h2>
             </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search resources, tasks...">
-                <i class='bx bx-search'></i>
+            <div class="card-body overall-progress-body">
+              <div class="circular-progress-wrap">
+                <div class="circular-progress" id="circularProgress" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress 72%">
+                  <svg class="circular-svg" viewBox="0 0 200 200">
+                    <circle class="circular-bg" cx="100" cy="100" r="80"/>
+                    <circle class="circular-fill" id="circularFill" cx="100" cy="100" r="80"
+                      stroke-dasharray="502.65"
+                      stroke-dashoffset="502.65"
+                      style="transition: stroke-dashoffset 1.5s ease"/>
+                    <text x="100" y="95" text-anchor="middle" class="circular-pct" id="circularPct">72%</text>
+                    <text x="100" y="118" text-anchor="middle" class="circular-lbl">Progress</text>
+                  </svg>
+                </div>
+                <p class="progress-task-info" id="progressTaskInfo">34 of 48 tasks completed</p>
+              </div>
+              <div class="progress-stats">
+                <div class="progress-stat-item">
+                  <span class="dot dot-green" aria-hidden="true"></span>
+                  <span class="ps-label">Completed</span>
+                  <span class="ps-val" id="psCompleted">34</span>
+                </div>
+                <div class="progress-stat-item">
+                  <span class="dot dot-blue" aria-hidden="true"></span>
+                  <span class="ps-label">In Progress</span>
+                  <span class="ps-val" id="psInProgress">8</span>
+                </div>
+                <div class="progress-stat-item">
+                  <span class="dot dot-gray" aria-hidden="true"></span>
+                  <span class="ps-label">Remaining</span>
+                  <span class="ps-val" id="psRemaining">6</span>
+                </div>
+              </div>
             </div>
-            <div class="profile-details">
-                <i class='bx bx-bell notification-icon'></i>
-                <img src="https://ui-avatars.com/api/?name=Arulmozhi&background=6c5ce7&color=fff" alt="profileImg">
-                <span class="admin_name" id="display-student-name">Arulmozhi</span>
+          </section>
+
+          <!-- Weekly Study Statistics Chart -->
+          <section class="card" aria-labelledby="weeklyChartTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="weeklyChartTitle">Weekly Study Statistics</h2>
+              <span class="card-badge">Study Hours</span>
             </div>
-        </nav>
-
-        <div class="main-content">
-            
-            <!-- 1. Dashboard -->
-            <div id="dashboard" class="content-section active">
-                <div class="welcome-box">
-                    <h2>Good Morning, <span id="welcome-name">Arulmozhi</span>! 👋</h2>
-                    <p>Let's make today productive.</p>
-                </div>
-                
-                <div class="overview-boxes">
-                    <div class="box">
-                        <div class="right-side">
-                            <div class="box-topic">Total Subjects</div>
-                            <div class="number" id="dash-total-subjects">0</div>
-                        </div>
-                        <i class='bx bx-book-open cart'></i>
-                    </div>
-                    <div class="box">
-                        <div class="right-side">
-                            <div class="box-topic">Pending Tasks</div>
-                            <div class="number" id="dash-pending-tasks">0</div>
-                        </div>
-                        <i class='bx bx-task cart two'></i>
-                    </div>
-                    <div class="box">
-                        <div class="right-side">
-                            <div class="box-topic">Completed Tasks</div>
-                            <div class="number" id="dash-completed-tasks">0</div>
-                        </div>
-                        <i class='bx bx-check-square cart three'></i>
-                    </div>
-                    <div class="box">
-                        <div class="right-side">
-                            <div class="box-topic">Overall Progress</div>
-                            <div class="number" id="dash-progress-num">0%</div>
-                        </div>
-                        <i class='bx bx-bar-chart-alt-2 cart four'></i>
-                    </div>
-                </div>
-
-                <div class="dashboard-grids">
-                    <div class="card ai-recommendation">
-                        <div class="card-header">
-                            <h3><i class='bx bx-bulb'></i> AI Study Recommendation</h3>
-                        </div>
-                        <div class="card-body">
-                            <p id="ai-recommendation-text">Analyzing your progress... Focus on completing pending tasks today to boost your score.</p>
-                            <button class="btn-primary" onclick="switchTab('ai-assistant')">Ask AI for more</button>
-                        </div>
-                    </div>
-
-                    <div class="card upcoming-activities">
-                        <div class="card-header">
-                            <h3><i class='bx bx-calendar-event'></i> Today's Study Plan</h3>
-                        </div>
-                        <div class="card-body">
-                            <ul class="activity-list" id="dash-today-plan">
-                                <!-- Dynamically populated -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-body">
+              <div class="chart-container" id="weeklyBarChart" aria-label="Weekly study hours bar chart" role="img"></div>
             </div>
+          </section>
 
-            <!-- 2. My Subjects -->
-            <div id="my-subjects" class="content-section">
-                <div class="section-header">
-                    <h2>My Subjects</h2>
-                    <button class="btn-primary" id="add-subject-btn"><i class='bx bx-plus'></i> Add Subject</button>
-                </div>
-                
-                <div class="form-container" id="subject-form-container" style="display: none;">
-                    <form id="subject-form">
-                        <div class="form-group">
-                            <label>Subject Name</label>
-                            <input type="text" id="subject-name" required placeholder="e.g. Java Programming">
-                        </div>
-                        <div class="form-group">
-                            <label>Initial Progress (%)</label>
-                            <input type="number" id="subject-progress" min="0" max="100" value="0">
-                        </div>
-                        <div class="form-group">
-                            <label>Difficulty</label>
-                            <select id="subject-difficulty">
-                                <option value="Easy">Easy</option>
-                                <option value="Medium" selected>Medium</option>
-                                <option value="Hard">Hard</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn-primary">Save Subject</button>
-                        <button type="button" class="btn-secondary" id="cancel-subject-btn">Cancel</button>
-                    </form>
-                </div>
-
-                <div class="subject-grid" id="subjects-container">
-                    <!-- Populated dynamically -->
-                </div>
+          <!-- Study Hours Trend -->
+          <section class="card" aria-labelledby="trendChartTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="trendChartTitle">Study Hours Trend</h2>
+              <span class="card-badge">Last 7 Days</span>
             </div>
-
-            <!-- 3. Study Plan -->
-            <div id="study-plan" class="content-section">
-                <div class="section-header">
-                    <h2>Study Plan</h2>
-                    <button class="btn-primary" id="add-plan-btn"><i class='bx bx-plus'></i> Add Session</button>
-                </div>
-
-                <div class="form-container" id="plan-form-container" style="display: none;">
-                    <form id="plan-form">
-                        <div class="form-group">
-                            <label>Subject</label>
-                            <select id="plan-subject" required></select>
-                        </div>
-                        <div class="form-group">
-                            <label>Date</label>
-                            <input type="date" id="plan-date" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Start Time</label>
-                            <input type="time" id="plan-time" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Duration (mins)</label>
-                            <input type="number" id="plan-duration" required min="10" placeholder="60">
-                        </div>
-                        <button type="submit" class="btn-primary">Save Session</button>
-                        <button type="button" class="btn-secondary" id="cancel-plan-btn">Cancel</button>
-                    </form>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="modern-table">
-                        <thead>
-                            <tr>
-                                <th>Subject</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Duration</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="plans-table-body">
-                            <!-- Populated dynamically -->
-                        </tbody>
-                    </table>
-                </div>
+            <div class="card-body">
+              <div class="chart-container" id="trendLineChart" aria-label="Study hours trend line chart" role="img"></div>
             </div>
+          </section>
 
-            <!-- 4. Tasks -->
-            <div id="tasks" class="content-section">
-                <div class="section-header">
-                    <h2>Tasks Management</h2>
-                    <div class="task-filters">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="pending">Pending</button>
-                        <button class="filter-btn" data-filter="completed">Completed</button>
-                        <button class="filter-btn" data-filter="high">High Priority</button>
-                    </div>
-                </div>
+          <!-- Task Completion Chart + Daily Productivity -->
+          <div class="two-col-grid">
+            <section class="card" aria-labelledby="donutChartTitle">
+              <div class="card-header">
+                <h2 class="card-title" id="donutChartTitle">Task Completion</h2>
+              </div>
+              <div class="card-body donut-body">
+                <div id="donutChart" aria-label="Task completion donut chart" role="img"></div>
+                <div class="donut-legend" id="donutLegend"></div>
+              </div>
+            </section>
+            <section class="card" aria-labelledby="dailyProdTitle">
+              <div class="card-header">
+                <h2 class="card-title" id="dailyProdTitle">Daily Productivity</h2>
+              </div>
+              <div class="card-body">
+                <div id="dailyProductivity"></div>
+              </div>
+            </section>
+          </div>
 
-                <div class="form-container" id="task-form-container" style="display: none; margin-bottom: 20px;">
-                    <form id="task-form">
-                        <div class="form-group">
-                            <label>Task Title</label>
-                            <input type="text" id="task-title" required placeholder="e.g. Complete Java Arrays">
-                        </div>
-                        <div class="form-group">
-                            <label>Priority</label>
-                            <select id="task-priority">
-                                <option value="Low">Low</option>
-                                <option value="Medium" selected>Medium</option>
-                                <option value="High">High Priority</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn-primary">Save Task</button>
-                        <button type="button" class="btn-secondary" id="cancel-task-btn">Cancel</button>
-                    </form>
-                </div>
-
-                <div class="task-input-container">
-                    <button class="btn-primary" id="show-add-task-btn" style="width: 100%;"><i class='bx bx-plus'></i> Add New Task</button>
-                </div>
-
-                <div class="tasks-list" id="tasks-container">
-                    <!-- Populated dynamically -->
-                </div>
+          <!-- Weekly Goal -->
+          <section class="card" aria-labelledby="weeklyGoalTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="weeklyGoalTitle">Weekly Study Goal</h2>
+              <button class="edit-goal-btn" id="editGoalBtn" aria-label="Edit weekly goal">Edit Goal</button>
             </div>
-
-            <!-- 5. Progress -->
-            <div id="progress" class="content-section">
-                <div class="section-header">
-                    <h2>Progress Tracker</h2>
+            <div class="card-body weekly-goal-body">
+              <div class="goal-info">
+                <span class="goal-main" id="goalMain">Goal: 30 hours</span>
+                <span class="goal-completed" id="goalCompleted">Completed: 28.5 hours</span>
+              </div>
+              <div class="goal-progress-wrap">
+                <div class="goal-progress-bar-bg">
+                  <div class="goal-progress-bar-fill" id="goalProgressFill" style="width:0%" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="Weekly goal progress"></div>
                 </div>
-                
-                <div class="progress-stats">
-                    <div class="stat-card">
-                        <h3>Overall Progress</h3>
-                        <div class="circular-progress">
-                            <span class="progress-value" id="prog-overall">0%</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Learning Streak</h3>
-                        <div class="streak-count">🔥 7 Days</div>
-                        <p>Keep it up!</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Weekly Study Hours</h3>
-                        <div class="hours-count" id="prog-hours">⏰ 12.5 hrs</div>
-                        <p>This week</p>
-                    </div>
-                </div>
-
-                <div class="chart-container">
-                    <h3>Weekly Performance Chart</h3>
-                    <canvas id="progressChart"></canvas>
-                </div>
+                <span class="goal-pct" id="goalPct">95%</span>
+              </div>
+              <p class="goal-remaining" id="goalRemaining">1.5 hours remaining</p>
             </div>
+          </section>
 
-            <!-- 6. Goals -->
-            <div id="goals" class="content-section">
-                <div class="section-header">
-                    <h2>Learning Goals</h2>
-                    <button class="btn-primary" id="add-goal-btn"><i class='bx bx-plus'></i> Add Goal</button>
-                </div>
-
-                <div class="form-container" id="goal-form-container" style="display: none;">
-                    <form id="goal-form">
-                        <div class="form-group">
-                            <label>Goal Title</label>
-                            <input type="text" id="goal-name" required placeholder="e.g. Complete Java Course">
-                        </div>
-                        <div class="form-group">
-                            <label>Target Date</label>
-                            <input type="date" id="goal-date" required>
-                        </div>
-                        <button type="submit" class="btn-primary">Save Goal</button>
-                        <button type="button" class="btn-secondary" id="cancel-goal-btn">Cancel</button>
-                    </form>
-                </div>
-
-                <div class="goals-list" id="goals-container">
-                    <!-- Populated dynamically -->
-                </div>
+          <!-- Subject Performance Table -->
+          <section class="card" aria-labelledby="perfTableTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="perfTableTitle">Subject Performance</h2>
             </div>
-
-            <!-- 7. Schedule -->
-            <div id="schedule" class="content-section">
-                <div class="section-header">
-                    <h2>Study Schedule</h2>
-                </div>
-                
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <button><i class='bx bx-chevron-left'></i></button>
-                        <h3>Current Week</h3>
-                        <button><i class='bx bx-chevron-right'></i></button>
-                    </div>
-                    <div class="calendar-grid">
-                        <div class="day-col">
-                            <h4>Mon</h4>
-                            <div class="schedule-item bg-purple">Java (2h)</div>
-                        </div>
-                        <div class="day-col">
-                            <h4>Tue</h4>
-                            <div class="schedule-item bg-blue">DBMS (1h)</div>
-                        </div>
-                        <div class="day-col">
-                            <h4>Wed</h4>
-                            <div class="schedule-item bg-purple">DSA (2h)</div>
-                        </div>
-                        <div class="day-col">
-                            <h4>Thu</h4>
-                            <div class="schedule-item bg-blue">Web Dev (1.5h)</div>
-                        </div>
-                        <div class="day-col">
-                            <h4>Fri</h4>
-                            <div class="schedule-item bg-purple">OS (1h)</div>
-                        </div>
-                        <div class="day-col">
-                            <h4>Sat</h4>
-                            <div class="schedule-item bg-blue">Revision (3h)</div>
-                        </div>
-                        <div class="day-col">
-                            <h4>Sun</h4>
-                            <div class="schedule-item rest">Rest Day</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-body table-wrap">
+              <table class="perf-table" id="perfTable" aria-label="Subject performance table">
+                <thead>
+                  <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Tasks</th>
+                    <th scope="col">Completed</th>
+                    <th scope="col">Progress</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="perfTableBody"></tbody>
+              </table>
             </div>
-
-            <!-- 8. AI Assistant -->
-            <div id="ai-assistant" class="content-section">
-                <div class="section-header">
-                    <h2>AI Study Assistant</h2>
-                </div>
-                
-                <div class="ai-container">
-                    <div class="chat-box" id="chat-box">
-                        <div class="message ai-message">
-                            <div class="avatar"><i class='bx bx-bot'></i></div>
-                            <div class="text">Hello! I'm your AI Study Assistant. I'm operating locally in demo mode right now. How can I help you?</div>
-                        </div>
-                    </div>
-                    
-                    <div class="suggested-questions">
-                        <button class="suggestion-btn" onclick="sendSuggestion('Create today\'s study plan')">Create today's study plan</button>
-                        <button class="suggestion-btn" onclick="sendSuggestion('Explain Java arrays')">Explain Java arrays</button>
-                        <button class="suggestion-btn" onclick="sendSuggestion('Give me practice questions')">Give me practice questions</button>
-                        <button class="suggestion-btn" onclick="sendSuggestion('What should I study next?')">What should I study next?</button>
-                    </div>
-
-                    <div class="chat-input-area">
-                        <input type="text" id="chat-input" placeholder="Type your message here...">
-                        <button id="send-chat-btn"><i class='bx bx-send'></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 9. Reminders -->
-            <div id="reminders" class="content-section">
-                <div class="section-header">
-                    <h2>Reminders</h2>
-                    <button class="btn-primary" id="add-reminder-btn"><i class='bx bx-plus'></i> Add Reminder</button>
-                </div>
-
-                <div class="form-container" id="reminder-form-container" style="display: none;">
-                    <form id="reminder-form">
-                        <div class="form-group">
-                            <label>Reminder Title</label>
-                            <input type="text" id="reminder-title" required placeholder="e.g. Project Submission">
-                        </div>
-                        <div class="form-group">
-                            <label>Date & Time</label>
-                            <input type="datetime-local" id="reminder-datetime" required>
-                        </div>
-                        <button type="submit" class="btn-primary">Save Reminder</button>
-                        <button type="button" class="btn-secondary" id="cancel-reminder-btn">Cancel</button>
-                    </form>
-                </div>
-
-                <div class="reminders-grid" id="reminders-container">
-                    <!-- Populated dynamically -->
-                </div>
-            </div>
-
-            <!-- 10. Settings -->
-            <div id="settings" class="content-section">
-                <div class="section-header">
-                    <h2>Settings</h2>
-                </div>
-                
-                <div class="settings-container">
-                    <form id="settings-form">
-                        <div class="settings-group">
-                            <h3>Profile Information</h3>
-                            <div class="form-group">
-                                <label>Student Name</label>
-                                <input type="text" id="set-name" value="Arulmozhi">
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" id="set-email" value="arulmozhi@example.com">
-                            </div>
-                        </div>
-
-                        <div class="settings-group">
-                            <h3>Study Preferences</h3>
-                            <div class="form-group">
-                                <label>Target Study Hours per Day</label>
-                                <input type="number" id="set-hours" value="4" min="1" max="16">
-                            </div>
-                        </div>
-
-                        <div class="settings-group">
-                            <h3>Appearance</h3>
-                            <div class="form-group toggle-group">
-                                <label>Dark Mode</label>
-                                <label class="switch">
-                                    <input type="checkbox" id="dark-mode-toggle">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn-primary">Save Changes</button>
-                    </form>
-                </div>
-            </div>
+          </section>
 
         </div>
-    </section>
 
-    <!-- Notification Toast Container -->
-    <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
+        <!-- Right Column -->
+        <div class="dashboard-col-right">
 
-    <script src="script.js"></script>
+          <!-- AI Insights -->
+          <section class="card ai-insights-card" aria-labelledby="aiInsightsTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="aiInsightsTitle">
+                <span class="ai-badge" aria-hidden="true">AI</span> Progress Insights
+              </h2>
+            </div>
+            <div class="card-body" id="aiInsightsBody"></div>
+          </section>
+
+          <!-- Subject Progress -->
+          <section class="card" aria-labelledby="subjectProgressTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="subjectProgressTitle">Subject Progress</h2>
+            </div>
+            <div class="card-body" id="subjectProgressCards"></div>
+          </section>
+
+          <!-- Completed Tasks -->
+          <section class="card" aria-labelledby="completedTasksTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="completedTasksTitle">Tasks</h2>
+              <div class="task-filters" role="group" aria-label="Task filter">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+                <button class="filter-btn" data-filter="in-progress" aria-pressed="false">In Progress</button>
+                <button class="filter-btn" data-filter="pending" aria-pressed="false">Pending</button>
+              </div>
+            </div>
+            <div class="card-body" id="taskListContainer"></div>
+          </section>
+
+          <!-- Achievements -->
+          <section class="card" aria-labelledby="achievementsTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="achievementsTitle">Achievements</h2>
+            </div>
+            <div class="card-body achievements-grid" id="achievementsGrid"></div>
+          </section>
+
+          <!-- Recent Activity -->
+          <section class="card" aria-labelledby="activityTitle">
+            <div class="card-header">
+              <h2 class="card-title" id="activityTitle">Recent Study Activity</h2>
+            </div>
+            <div class="card-body" id="recentActivity"></div>
+          </section>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Add Task Modal -->
+  <div class="modal-overlay" id="addTaskModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Add New Task</h2>
+        <button class="modal-close" id="modalClose" aria-label="Close modal">&#10005;</button>
+      </div>
+      <form id="addTaskForm" novalidate>
+        <div class="form-group">
+          <label for="taskName">Task Name</label>
+          <input type="text" id="taskName" name="taskName" placeholder="Enter task name" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="taskSubject">Subject</label>
+          <select id="taskSubject" name="taskSubject" required>
+            <option value="">Select Subject</option>
+            <option value="Data Structures">Data Structures</option>
+            <option value="DBMS">DBMS</option>
+            <option value="Java">Java</option>
+            <option value="Computer Networks">Computer Networks</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="taskDuration">Duration (minutes)</label>
+            <input type="number" id="taskDuration" name="taskDuration" placeholder="60" min="1" max="480" required />
+          </div>
+          <div class="form-group">
+            <label for="taskDate">Date</label>
+            <input type="date" id="taskDate" name="taskDate" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="taskStatus">Status</label>
+          <select id="taskStatus" name="taskStatus" required>
+            <option value="pending">Pending</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="modalCancel">Cancel</button>
+          <button type="submit" class="btn-save" id="modalSave">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Goal Modal -->
+  <div class="modal-overlay" id="editGoalModal" role="dialog" aria-modal="true" aria-labelledby="goalModalTitle" aria-hidden="true">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h2 class="modal-title" id="goalModalTitle">Edit Weekly Goal</h2>
+        <button class="modal-close" id="goalModalClose" aria-label="Close goal modal">&#10005;</button>
+      </div>
+      <form id="editGoalForm" novalidate>
+        <div class="form-group">
+          <label for="goalHours">Weekly Goal (hours)</label>
+          <input type="number" id="goalHours" name="goalHours" placeholder="30" min="1" max="168" required />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="goalModalCancel">Cancel</button>
+          <button type="submit" class="btn-save">Update Goal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <script src="app.js"></script>
 </body>
 </html>
